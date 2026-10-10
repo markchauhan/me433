@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Build output
+build/
+
+# KiCad backups, lock files and autosaves
+*-backups/
+*.kicad_prl
+*.lck
+~*.lck
+_autosave-*
+\#auto_saved_files#
+fp-info-cache
+*.bak
+*-bak
+
+# Python
+__pycache__/
+*.pyc

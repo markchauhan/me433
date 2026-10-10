@@ -2,7 +2,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # open the image
-img_data = Image.open("pic2.jpg")
+img_data = Image.open("track-photo.jpg")
 img_data = img_data.convert('RGB')
 
 # get the image size

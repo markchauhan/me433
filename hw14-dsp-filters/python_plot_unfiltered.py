@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt # for plotting
 import numpy as np # for sine function
 import pandas as pd
+import os
+
+# folder this script lives in, so the CSVs load from a clone
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 ##dt = 1.0/100.0 # 100Hz
 ##t = np.arange(0.0, 5.0, dt) # for 5s
@@ -13,10 +17,10 @@ import pandas as pd
 ##plt.title('Signal vs Time')
 ##plt.show()
 column = ['time', 'value']
-sigA = pd.read_csv('/Users/markchauhan/Desktop/Pico/HW14/sigA.csv', names=column)
-sigB = pd.read_csv('/Users/markchauhan/Desktop/Pico/HW14/sigB.csv', names=column)
-sigC = pd.read_csv('/Users/markchauhan/Desktop/Pico/HW14/sigC.csv', names=column)
-sigD = pd.read_csv('/Users/markchauhan/Desktop/Pico/HW14/sigD.csv', names=column)
+sigA = pd.read_csv(os.path.join(HERE, 'sigA.csv'), names=column)
+sigB = pd.read_csv(os.path.join(HERE, 'sigB.csv'), names=column)
+sigC = pd.read_csv(os.path.join(HERE, 'sigC.csv'), names=column)
+sigD = pd.read_csv(os.path.join(HERE, 'sigD.csv'), names=column)
 
 def fft(signal, sample_rate, title):
     t = signal['time']

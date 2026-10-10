@@ -1,13 +1,19 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+
+# folder this script lives in, so the CSVs load from a clone
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 # Custom FIR filter weights generation
 def fir_lowpass_weights(num_taps, cutoff, window='hamming'):
     n = np.arange(num_taps)
     h = np.sinc(2 * cutoff * (n - (num_taps - 1) / 2))
-    window = np.hamming(num_taps)
-    h = h * window
+    windows = {'hamming': np.hamming, 'hann': np.hanning, 'blackman': np.blackman}
+    if window not in windows:
+        raise ValueError(f'unknown window: {window}')
+    h = h * windows[window](num_taps)
     h = h / np.sum(h)
     return h
 
@@ -55,10 +61,10 @@ def calculate_sample_rate(time_data):
 
 # File paths and reading CSV files
 file_paths = {
-    'sigA': '/Users/markchauhan/Desktop/Pico/HW14/sigA.csv',
-    'sigB': '/Users/markchauhan/Desktop/Pico/HW14/sigB.csv',
-    'sigC': '/Users/markchauhan/Desktop/Pico/HW14/sigC.csv',
-    'sigD': '/Users/markchauhan/Desktop/Pico/HW14/sigD.csv'
+    'sigA': os.path.join(HERE, 'sigA.csv'),
+    'sigB': os.path.join(HERE, 'sigB.csv'),
+    'sigC': os.path.join(HERE, 'sigC.csv'),
+    'sigD': os.path.join(HERE, 'sigD.csv')
 }
 
 signals = {name: pd.read_csv(path, header=None, names=['time', 'value']) for name, path in file_paths.items()}

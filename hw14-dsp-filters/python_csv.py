@@ -1,4 +1,8 @@
 import csv
+import os
+
+# folder this script lives in, so the CSVs load from a clone
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 def load_data(file):
     t = [] # column 0
@@ -22,10 +26,10 @@ def load_data(file):
   #      print(str(t[i]) + ", " + str(data1[i]) + ", " + str(data2[i]))
 
 
-timeA, valueA = load_data('/Users/markchauhan/Desktop/Pico/HW14/sigA.csv')
-timeB, valueB = load_data('/Users/markchauhan/Desktop/Pico/HW14/sigB.csv')
-timeC, valueC = load_data('/Users/markchauhan/Desktop/Pico/HW14/sigC.csv')
-timeD, valueD = load_data('/Users/markchauhan/Desktop/Pico/HW14/sigD.csv')
+timeA, valueA = load_data(os.path.join(HERE, 'sigA.csv'))
+timeB, valueB = load_data(os.path.join(HERE, 'sigB.csv'))
+timeC, valueC = load_data(os.path.join(HERE, 'sigC.csv'))
+timeD, valueD = load_data(os.path.join(HERE, 'sigD.csv'))
 
 
 print(f'Signal A: {list(zip(timeA[:5], valueA[:5]))}')
